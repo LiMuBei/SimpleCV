@@ -1,0 +1,2 @@
+#define SimpleCV_VERSION_MAJOR @SimpleCV_VERSION_MAJOR@
+#define SimpleCV_VERSION_MINOR @SimpleCV_VERSION_MINOR@
