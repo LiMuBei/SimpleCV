@@ -17,7 +17,7 @@ else(WIN32)
 set_target_properties(Core PROPERTIES COMPILE_FLAGS "-fPIC")
 endif(WIN32)
 
-target_link_libraries(Core ${Boost_LIBRARIES})
+target_link_libraries(Core ${Boost_LIBRARIES} ${PNG_LIBRARIES})
 
 target_include_directories(Core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
