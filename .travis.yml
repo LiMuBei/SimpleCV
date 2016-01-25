@@ -20,7 +20,7 @@ addons:
 install:
     - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
     - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.4" CC="clang-3.4"; fi
-    - wget https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz
+    - wget --no-check-certificates https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz
     - tar xzf cmake-3.4.3-Linux-x86_64.tar.gz
         
 script:
