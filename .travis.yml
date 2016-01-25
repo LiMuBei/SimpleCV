@@ -23,7 +23,7 @@ install:
 script:
   - mkdir build
   - cd build
-  - ~/bin/cmake .. -DBOOST_ROOT=$BOOST_ROOT -DCMAKE_INSTALL_PREFIX:PATH=~
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
   - make 
   # - make test
   - make install
