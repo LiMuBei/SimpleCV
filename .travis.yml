@@ -20,13 +20,16 @@ addons:
 install:
     - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
     - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.4" CC="clang-3.4"; fi
-    - wget --no-check-certificate https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz
-    - tar xzf cmake-3.4.3-Linux-x86_64.tar.gz
         
+before_script:
+    - wget --no-check-certificate https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz -O /tmp/cmake.tar.gz
+    - tar xzf /tmp/cmake.tar.gz
+    - export PATH=$PATH:$PWD/cmake-3.4.3-Linux-x86_64/bin
+    
 script:
   - mkdir build
   - cd build
-  - ~/cmake-3.4.3-Linux-x86_64/bin/cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
   - make 
   # - make test
   - make install
