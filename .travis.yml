@@ -18,15 +18,16 @@ addons:
         - libboost1.55-all-dev
 
 install:
-    - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.4" CC="clang-3.4"; fi
-        
+    - if [ "$CXX" == "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+    - if [ "$CXX" == "clang++" ]; then export CXX="clang++-3.4" CC="clang-3.4"; fi
+
 before_script:
     - wget --no-check-certificate https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz -O /tmp/cmake.tar.gz
     - tar xzf /tmp/cmake.tar.gz
     - export CMAKE_BIN=$PWD/cmake-3.4.3-Linux-x86_64/bin
-    
+
 script:
+  - $CXX --version
   - mkdir build
   - cd build
   - $CMAKE_BIN/cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
