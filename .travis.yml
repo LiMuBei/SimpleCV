@@ -18,10 +18,6 @@ addons:
         - clang-3.7
         - libboost1.55-all-dev
 
-install:
-    - if [ "$CXX" == "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-    - if [ "$CXX" == "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
-
 before_script:
     - wget --no-check-certificate https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz -O /tmp/cmake.tar.gz
     - tar xzf /tmp/cmake.tar.gz
