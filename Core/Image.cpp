@@ -1,6 +1,6 @@
 #include "Image.h"
 
-#include <exception>
+#include <stdexcept>
 
 using namespace SimpleCV::Core;
 
