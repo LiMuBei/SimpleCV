@@ -24,7 +24,5 @@ foreach(testSrc ${CoreTestSources})
 
 	#Finally add it to test execution - 
 	#Notice the WORKING_DIRECTORY and COMMAND
-	add_test(NAME ${testName} 
-			 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/testBin/Core 
-			 COMMAND ${CMAKE_CURRENT_BINARY_DIR}/testBin/Core/${testName} )
+	add_test(${testName} ${testName} )
 endforeach(testSrc)
