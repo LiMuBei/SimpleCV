@@ -1,6 +1,4 @@
 # Test
-enable_testing()
-
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 include_directories (${Boost_INCLUDE_DIRS})
 

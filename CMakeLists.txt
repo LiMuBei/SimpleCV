@@ -8,6 +8,8 @@ set (SimpleCV_VERSION_PATCH 0)
 
 set (CMAKE_DEBUG_POSTFIX _D)
 
+enable_testing()
+
 if(WIN32)
 set(Boost_USE_MULTITHREAD ON)
 set(Boost_USE_STATIC_LIBS OFF)
