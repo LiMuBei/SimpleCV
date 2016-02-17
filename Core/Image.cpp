@@ -29,7 +29,7 @@ int Image::getWidth() const
 int Image::getPixel(const int x, const int y) const
 {
 	if (x < 0 || x >= width || y < 0 || y >= height)
-		throw new std::exception("Out of bounds access");
+		throw std::out_of_range("Out of bounds access");
 
 	return pixels.at(y*width + x);
 }
