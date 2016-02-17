@@ -10,7 +10,7 @@ set (CMAKE_DEBUG_POSTFIX _D)
 
 if(WIN32)
 set(Boost_USE_MULTITHREAD ON)
-set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_STATIC_LIBS OFF)
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 else(WIN32)
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)

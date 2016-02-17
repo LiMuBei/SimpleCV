@@ -1,3 +1,5 @@
+#define BOOST_TEST_DYN_LINK
+
 //Define our Module name (prints at testing)
 #define BOOST_TEST_MODULE "Core"
 
