@@ -1,19 +1,28 @@
 #pragma once
 
-namespace Core  {
+#include <vector>
 
-	class Image
-	{
-	public:
-		Image();
-		Image(const Image& image);
+namespace SimpleCV {
+	namespace Core {
 
-		int getWidth() const;
-		int getHeight() const;
+		class Image
+		{
+		public:
+			Image(const Image& image);
+			Image(const int width, const int height, const int value = 0);
 
-	private:
-		int width;
-		int height;
-	};
+			int getWidth() const;
+			int getHeight() const;
 
-}
+			int getPixel(const int x, const int y) const;
+			const std::vector<int>& getBuffer() const;
+
+		private:
+			int width;
+			int height;
+
+			std::vector<int> pixels;
+		};
+
+	} // Core
+} // SimpleCV

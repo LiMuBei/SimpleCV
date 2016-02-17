@@ -9,11 +9,11 @@ set (SimpleCV_VERSION_PATCH 0)
 set (CMAKE_DEBUG_POSTFIX _D)
 
 if(WIN32)
-set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREAD ON)
-find_package(Boost REQUIRED)
+set(Boost_USE_STATIC_LIBS ON)
+find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 else(WIN32)
-find_package(Boost REQUIRED COMPONENTS system filesystem)
+find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 endif(WIN32)
 
 find_package(PNG REQUIRED)
@@ -24,5 +24,6 @@ configure_file (
 )
 
 add_subdirectory(Core)
+add_subdirectory(Test)
 
 install(FILES "README.md" DESTINATION bin)
