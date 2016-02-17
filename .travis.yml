@@ -28,5 +28,5 @@ script:
   - cd build
   - $CMAKE_BIN/cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
   - make 
-  # - make test
+  - make test
   - make install
