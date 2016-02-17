@@ -18,11 +18,5 @@ foreach(testSrc ${CoreTestSources})
 	#link to Boost libraries AND your targets and dependencies
 	target_link_libraries(${testName} ${Boost_LIBRARIES} Core)
 
-	#I like to move testing binaries into a testBin directory
-	set_target_properties(${testName} PROPERTIES 
-		RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/testBin/Core)
-
-	#Finally add it to test execution - 
-	#Notice the WORKING_DIRECTORY and COMMAND
 	add_test(${testName} ${testName} )
 endforeach(testSrc)
