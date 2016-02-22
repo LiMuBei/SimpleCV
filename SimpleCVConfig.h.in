@@ -1,2 +1,4 @@
 #define SimpleCV_VERSION_MAJOR @SimpleCV_VERSION_MAJOR@
 #define SimpleCV_VERSION_MINOR @SimpleCV_VERSION_MINOR@
+#define SimpleCV_VERSION_PATCH @SimpleCV_VERSION_PATCH@
+const std::string SimpleCV_VERSION_STRING = "@SimpleCV_VERSION_STRING@";

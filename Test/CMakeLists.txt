@@ -1,5 +1,4 @@
 # Test
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 include_directories (${Boost_INCLUDE_DIRS})
 
 set (CoreTestSources 
@@ -16,5 +15,5 @@ foreach(testSrc ${CoreTestSources})
 	#link to Boost libraries AND your targets and dependencies
 	target_link_libraries(${testName} ${Boost_LIBRARIES} Core)
 
-	add_test(${testName} ${testName} )
+	add_test(${testName} ${testName})
 endforeach(testSrc)

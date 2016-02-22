@@ -16,6 +16,12 @@ Image::Image(const Image& image)
 	pixels.assign(image.getBuffer().begin(), image.getBuffer().end());
 }
 
+Image::Image(const int width, const int height, const std::vector<long>& data)
+	: width(width), height(height)
+{
+	pixels.assign(data.begin(), data.end());
+}
+
 int Image::getHeight() const
 {
 	return width;
@@ -26,7 +32,7 @@ int Image::getWidth() const
 	return height;
 }
 
-int Image::getPixel(const int x, const int y) const
+long Image::getPixel(const int x, const int y) const
 {
 	if (x < 0 || x >= width || y < 0 || y >= height)
 		throw std::out_of_range("Out of bounds access");
@@ -34,7 +40,7 @@ int Image::getPixel(const int x, const int y) const
 	return pixels.at(y*width + x);
 }
 
-const std::vector<int>& Image::getBuffer() const
+const std::vector<long>& Image::getBuffer() const
 {
 	return pixels;
 }

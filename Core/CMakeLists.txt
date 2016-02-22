@@ -12,9 +12,9 @@ set( CoreSources
 add_library(Core STATIC ${CoreHeaders} ${CoreSources})
 
 if(WIN32)
-set_target_properties(Core PROPERTIES COMPILE_FLAGS "/D_WIN32_WINNT=_WIN32_WINNT_WINXP")
+set_target_properties(Core PROPERTIES COMPILE_FLAGS "/D_WIN32_WINNT=_WIN32_WINNT_WINXP" VERSION ${SimpleCV_VERSION_STRING} SOVERSION ${SimpleCV_VERSION_STRING})
 else(WIN32)
-set_target_properties(Core PROPERTIES COMPILE_FLAGS "-fPIC")
+set_target_properties(Core PROPERTIES COMPILE_FLAGS "-fPIC" VERSION ${SimpleCV_VERSION_STRING} SOVERSION ${SimpleCV_VERSION_STRING})
 endif(WIN32)
 
 target_link_libraries(Core ${Boost_LIBRARIES} ${PNG_LIBRARIES})
