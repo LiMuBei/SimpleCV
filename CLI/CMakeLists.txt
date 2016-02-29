@@ -1,6 +1,4 @@
 # CLI
-include_directories(${Boost_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
-
 set( CLIHeaders
 	SimpleCVConfig.h
 )
@@ -19,6 +17,6 @@ endif(WIN32)
 
 target_link_libraries(CLI ${Boost_LIBRARIES} ${PNG_LIBRARIES} Core Io)
 
-#1target_include_directories(CLI PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(CLI PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR} ${PNG_INCLUDE_DIR})
 
 install(TARGETS CLI RUNTIME DESTINATION bin)

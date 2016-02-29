@@ -1,6 +1,4 @@
 # IO
-include_directories(${Boost_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
-
 set( IOHeaders
 	PNGLoader.h
 )
@@ -19,6 +17,6 @@ endif(WIN32)
 
 target_link_libraries(Io ${Boost_LIBRARIES} ${PNG_LIBRARIES} Core)
 
-target_include_directories(Io PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Io PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${PNG_INCLUDE_DIR})
 
 install(TARGETS Io ARCHIVE DESTINATION lib)

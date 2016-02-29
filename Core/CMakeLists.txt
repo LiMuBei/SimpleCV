@@ -1,6 +1,4 @@
 # Core
-include_directories(${Boost_INCLUDE_DIR})
-
 set( CoreHeaders
 	Image.h
 )
@@ -19,6 +17,6 @@ endif(WIN32)
 
 target_link_libraries(Core ${Boost_LIBRARIES} ${PNG_LIBRARIES})
 
-target_include_directories(Core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})
 
 install(TARGETS Core ARCHIVE DESTINATION lib)

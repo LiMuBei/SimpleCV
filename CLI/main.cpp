@@ -2,6 +2,10 @@
 #include <boost/program_options.hpp>
 
 #include "SimpleCVConfig.h"
+#include "png.h"
+#include "zlib.h"
+
+#include "PNGLoader.h"
 
 namespace po = boost::program_options;
 
@@ -38,12 +42,21 @@ int main(int argc, const char* argv[])
 		if (vm.count("version"))
 		{
 			std::cout << "This is SimpleCV version v" << SimpleCV_VERSION_STRING.c_str() << std::endl;
+			std::cout << "Compiled with libpng " << PNG_LIBPNG_VER_STRING << " using " << png_libpng_ver << std::endl;
+			std::cout << "Compiled with zlib " << ZLIB_VERSION << " using " << zlib_version << std::endl;
 			return 1;
 		}
 
 		po::notify(vm);
+
+		IO::PNG::load(vm["input-file"].as<std::string>());
 	}
 	catch (po::required_option& e)
+	{
+		std::cerr << "ERROR: " << e.what() << std::endl;
+		return -1;
+	}
+	catch (std::invalid_argument& e)
 	{
 		std::cerr << "ERROR: " << e.what() << std::endl;
 		return -1;
