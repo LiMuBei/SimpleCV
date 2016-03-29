@@ -8,15 +8,20 @@ namespace SimpleCV {
 		class Image
 		{
 		public:
+			Image();
 			Image(const Image& image);
-			Image(const int width, const int height, const int value = 0);
-			Image(const int width, const int height, const std::vector<long>& data);
+			Image(int width, int height, int value = 0);
+			Image(int width, int height, const std::vector<long>& data);
 
 			int getWidth() const;
 			int getHeight() const;
 
-			long getPixel(const int x, const int y) const;
+			long getPixel(int x, int y) const;
 			const std::vector<long>& getBuffer() const;
+
+			void setPixel(int x, int y, long value);
+
+			void resize(int width, int height);
 
 		private:
 			int width;

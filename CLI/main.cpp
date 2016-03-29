@@ -8,6 +8,7 @@
 #include "PNGLoader.h"
 
 namespace po = boost::program_options;
+namespace bf = boost::filesystem;
 
 int main(int argc, const char* argv[])
 {
@@ -49,7 +50,12 @@ int main(int argc, const char* argv[])
 
 		po::notify(vm);
 
-		IO::PNG::load(vm["input-file"].as<std::string>());
+		bf::path inputFilePath = vm["input-file"].as<std::string>();
+		SimpleCV::Core::Image inputImage;
+		SimpleCV::IO::PNG::load(inputFilePath, inputImage);
+
+		std::cout << "Successfully loaded image. Width is " << inputImage.getWidth() << ", height is " << inputImage.getHeight() << std::endl;
+		std::cout << "Pixel at (100, 100) has the value " << inputImage.getPixel(100, 100) << std::endl;
 	}
 	catch (po::required_option& e)
 	{

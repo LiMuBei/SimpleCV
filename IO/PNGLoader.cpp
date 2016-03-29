@@ -7,7 +7,7 @@
 
 namespace bf = boost::filesystem;
 
-using namespace IO::PNG;
+using namespace SimpleCV::IO::PNG;
 
 struct PNGParams {
 	png_structp png_ptr;
@@ -67,7 +67,7 @@ PNGParams setupLoading(const bf::path& imagePath)
 }
 
 
-void IO::PNG::load(const bf::path& imagePath)
+void SimpleCV::IO::PNG::load(const bf::path& imagePath, Core::Image& image)
 {
 	PNGParams params = setupLoading(imagePath);
 
@@ -87,11 +87,25 @@ void IO::PNG::load(const bf::path& imagePath)
 	params.height = png_get_image_height(params.png_ptr, params.png_info_ptr);
 	std::cout << "Image size is " << params.width << " x " << params.height << " pixels." << std::endl;
 
+	image.resize(params.width, params.height);
+
+	png_bytepp rowPointers = png_get_rows(params.png_ptr, params.png_info_ptr);
+
+	// copy image data
+	for (int y = 0; y < params.height; ++y)
+	{
+		for (int x = 0; x < params.width; ++x)
+		{
+			png_byte rawPixel = rowPointers[y][x];
+			image.setPixel(x, y, static_cast<long>(rawPixel));
+		}
+	}
+
 	png_destroy_read_struct(&(params.png_ptr), &(params.png_info_ptr), &(params.png_end_info_ptr));
 	fclose(params.filePointer);
 }
 
-void IO::PNG::load(const std::string& imagePath)
+void SimpleCV::IO::PNG::load(const std::string& imagePath, Core::Image& image)
 {
-	load(bf::path(imagePath));
+	load(bf::path(imagePath), image);
 }
