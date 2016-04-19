@@ -6,6 +6,7 @@
 #include "zlib.h"
 
 #include "PNGLoader.h"
+#include "PNGWriter.h"
 
 namespace po = boost::program_options;
 namespace bf = boost::filesystem;
@@ -51,11 +52,15 @@ int main(int argc, const char* argv[])
 		po::notify(vm);
 
 		bf::path inputFilePath = vm["input-file"].as<std::string>();
-		SimpleCV::Core::Image inputImage;
-		SimpleCV::IO::PNG::load(inputFilePath, inputImage);
+		bf::path outputFilePath = vm["output-file"].as<std::string>();
+		//SimpleCV::Core::Image inputImage;
+		//SimpleCV::IO::PNG::load(inputFilePath, inputImage);
 
-		std::cout << "Successfully loaded image. Width is " << inputImage.getWidth() << ", height is " << inputImage.getHeight() << std::endl;
-		std::cout << "Pixel at (100, 100) has the value " << inputImage.getPixel(100, 100) << std::endl;
+		//std::cout << "Successfully loaded image. Width is " << inputImage.getWidth() << ", height is " << inputImage.getHeight() << std::endl;
+		//std::cout << "Pixel at (100, 100) has the value " << inputImage.getPixel(100, 100) << std::endl;
+
+		SimpleCV::Core::Image outputImage(200, 200, 100);
+		SimpleCV::IO::PNG::save(outputFilePath, outputImage);
 	}
 	catch (po::required_option& e)
 	{

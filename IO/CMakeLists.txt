@@ -1,10 +1,13 @@
 # IO
 set( IOHeaders
 	PNGLoader.h
+	PNGWriter.h
+	PNGCommon.h
 )
 
 set( IOSources
 	PNGLoader.cpp
+	PNGWriter.cpp
 )
 
 add_library(Io STATIC ${IOHeaders} ${IOSources})
