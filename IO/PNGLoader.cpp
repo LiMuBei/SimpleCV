@@ -71,7 +71,7 @@ void SimpleCV::IO::PNG::load(const bf::path& imagePath, Core::Image& image)
 	png_init_io(params.png_ptr, params.filePointer);
 	png_set_sig_bytes(params.png_ptr, 8);
 
-	png_read_png(params.png_ptr, params.png_info_ptr, NULL, NULL);
+	png_read_png(params.png_ptr, params.png_info_ptr, 0, NULL);
 	std::cout << "Read image file " << imagePath.string() << " successfully!" << std::endl;
 	params.width = png_get_image_width(params.png_ptr, params.png_info_ptr);
 	params.height = png_get_image_height(params.png_ptr, params.png_info_ptr);

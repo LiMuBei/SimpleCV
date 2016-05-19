@@ -13,18 +13,18 @@ PNGParams setupWriting(const bf::path& imagePath)
 
 	if (!params.filePointer)
 	{
-		throw std::exception("Error opening file for writing image!");
+		throw std::runtime_error("Error opening file for writing image!");
 	}
 
 	params.png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (!params.png_ptr)
-		throw std::exception("Error creating PNG write struct for writing image!");
+		throw std::runtime_error("Error creating PNG write struct for writing image!");
 
 	params.png_info_ptr = png_create_info_struct(params.png_ptr);
 	if (!params.png_info_ptr)
 	{
 		png_destroy_write_struct(&params.png_ptr, (png_infopp)NULL);
-		throw std::exception("Error creating PNG info struct for writing image!");
+		throw std::runtime_error("Error creating PNG info struct for writing image!");
 	}
 
 	return params;
@@ -38,7 +38,7 @@ void SimpleCV::IO::PNG::save(const bf::path& imagePath, const Core::Image& image
 	{
 		png_destroy_write_struct(&params.png_ptr, &params.png_info_ptr);
 		fclose(params.filePointer);
-		throw std::exception("Error encountered during PNG writing!");
+		throw std::runtime_error("Error encountered during PNG writing!");
 	}
 
 	png_init_io(params.png_ptr, params.filePointer);
