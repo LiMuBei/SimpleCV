@@ -17,10 +17,14 @@ addons:
         - libboost-all-dev
         - cmake
 
-script:
-  - mkdir build
-  - cd build
-  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
-  - make 
-  - make test
-  - make install
+env:
+    - CONFIG=Debug
+    - CONFIG=Release
+
+script: 
+    - mkdir -p build/${CONFIG}
+    - cd build/${CONFIG}
+    - cmake ../.. -DCMAKE_INSTALL_PREFIX:PATH=~ -DCMAKE_BUILD_TYPE=${CONFIG}
+    - make
+    - make test
+    - make install 
