@@ -1,8 +1,9 @@
+dist: trusty
+
 sudo: false
 
 language: cpp
 compiler:
-    - g++
     - clang
 cache:
     - apt
@@ -14,14 +15,9 @@ addons:
         - ubuntu-toolchain-r-test
         - boost-latest
         packages:
-        - g++-5
-        - clang-3.7
-        - libboost1.55-all-dev
-
-before_script:
-    - wget --no-check-certificate https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz -O /tmp/cmake.tar.gz
-    - tar xzf /tmp/cmake.tar.gz
-    - export CMAKE_BIN=$PWD/cmake-3.4.3-Linux-x86_64/bin
+        - clang-3.8
+        - libboost-all-dev
+        - cmake
 
 script:
   - mkdir build
