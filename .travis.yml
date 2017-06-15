@@ -11,18 +11,16 @@ cache:
 addons:
     apt:
         sources:
-        - llvm-toolchain-precise
         - ubuntu-toolchain-r-test
         - boost-latest
         packages:
-        - clang-3.8
         - libboost-all-dev
         - cmake
 
 script:
   - mkdir build
   - cd build
-  - $CMAKE_BIN/cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=~
   - make 
   - make test
   - make install
