@@ -20,18 +20,18 @@ BOOST_AUTO_TEST_CASE(constructors)
 	BOOST_REQUIRE(img1.getWidth() == img2.getWidth());
 	BOOST_REQUIRE(img1.getHeight() == img2.getHeight());
 
-	std::vector<long> data;
-	data.resize(10 * 10, 5L);
+	std::vector<unsigned int> data;
+	data.resize(10 * 10, 5);
 	Image img3(10, 10, data);
 	BOOST_REQUIRE(img3.getWidth() == 10);
 	BOOST_REQUIRE(img3.getHeight() == 10);
-	BOOST_REQUIRE(img3.getPixel(0, 0) == 5L);
+	BOOST_REQUIRE(img3.getPixel(0, 0) == 5);
 }
 
 BOOST_AUTO_TEST_CASE(buffer_access)
 {
 	Image img1(1, 1);
-	BOOST_REQUIRE(img1.getPixel(0, 0) == 0L);
+	BOOST_REQUIRE(img1.getPixel(0, 0) == 0);
 	BOOST_CHECK_THROW(img1.getPixel(2, 0), std::out_of_range);
 	BOOST_CHECK_THROW(img1.getPixel(0, 2), std::out_of_range);
 	BOOST_CHECK_THROW(img1.getPixel(-1, 0), std::out_of_range);

@@ -39,9 +39,7 @@ void SimpleCV::IO::PNG::save(const bf::path& imagePath, const Core::Image& image
 		png_destroy_write_struct(&params.png_ptr, &params.png_info_ptr);
 		fclose(params.filePointer);
 		throw std::runtime_error("Error encountered during PNG writing!");
-	}
-
-	png_init_io(params.png_ptr, params.filePointer);
+	}	
 
 	png_set_IHDR(params.png_ptr, params.png_info_ptr, 
 		image.getWidth(), image.getHeight(), 8, PNG_COLOR_TYPE_RGBA, 
@@ -50,8 +48,7 @@ void SimpleCV::IO::PNG::save(const bf::path& imagePath, const Core::Image& image
 	png_text comment[1];
 	comment[0].key = "Software";
 	comment[0].text = "SimpleCV";
-	comment[0].compression = PNG_TEXT_COMPRESSION_NONE;
-	comment[0].lang = "en-us";
+	comment[0].compression = PNG_TEXT_COMPRESSION_NONE;	
 
 	// TODO: Add creation time
 
@@ -61,20 +58,29 @@ void SimpleCV::IO::PNG::save(const bf::path& imagePath, const Core::Image& image
 	png_bytepp rows = new png_bytep[image.getHeight()];
 	for (int y = 0; y < image.getHeight(); ++y)
 	{
-		rows[y] = new png_byte[image.getWidth()];
+		png_bytep row = new png_byte[image.getWidth()*4];
 		for (int x = 0; x < image.getWidth(); ++x)
 		{
-			rows[y][x] = static_cast<png_byte>(image.getPixel(x, y));
+			unsigned int pix = image.getPixel(x, y);
+			row[x*4] = static_cast<png_byte>(pix >> 24);
+			row[x*4+1] = static_cast<png_byte>(pix >> 16);
+			row[x*4+2] = static_cast<png_byte>(pix >> 8);
+			row[x * 4 + 3] = static_cast<png_byte>(pix);
 		}
+		rows[y] = row;
 	}
+	
+	png_init_io(params.png_ptr, params.filePointer);
+
 	png_set_rows(params.png_ptr, params.png_info_ptr, rows);
 
 	png_write_png(params.png_ptr, params.png_info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
+	
+	fclose(params.filePointer);
 
 	png_destroy_write_struct(&params.png_ptr, &params.png_info_ptr);
-}
 
-void SimpleCV::IO::PNG::save(const std::string& imagePath, const Core::Image& image)
-{
-	save(bf::path(imagePath), image);
+	for (int y = 0; y < image.getHeight(); ++y)
+		delete[] rows[y];
+	delete[] rows;
 }
